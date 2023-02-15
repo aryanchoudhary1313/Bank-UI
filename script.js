@@ -74,18 +74,55 @@ const displayMovements = function (movements) {
   });
 };
 displayMovements(account1.movements);
+const calcDisplayBalance = function (movements) {
+  const balance = movements.reduce((acc, mov) => acc + mov, 0);
+  labelBalance.textContent = `₹ ${balance} `;
+};
+calcDisplayBalance(account1.movements);
 
-const movements = [10, 656, 654, 564, 879, 91584, 8654];
-const rrr = 2;
+const createUsernames = function (accs) {
+  accs.forEach(function (acc) {
+    acc.username = acc.owner
+      .toLowerCase()
+      .split(" ")
+      .map((name) => name[0])
+      .join("");
+  });
+};
 
-// const ttt = movements.map(function (mov) {
-//   return mov * rrr;
-// });
-const ttt = movements.map((mov) => mov * rrr);
-console.log(movements);
-console.log(ttt);
+createUsernames(accounts);
 
-const ttr = [];
+const movements = [
+  10, 656, 654, -564, 879, 91584, -8654, -5656, 6451, 541, -654,
+];
 
-for (const mov of movements) ttr.push(mov * rrr);
-console.log(ttr);
+const maximum = movements.reduce((acc, cur) => {
+  if (acc > cur) return acc;
+  else return cur;
+}, movements[0]);
+console.log(maximum);
+
+// const withdrawal = movements.filter((mov) => mov < 0);
+// console.log(withdrawal);
+
+// const bln = movements.reduce(function (acc, cur, i, arr) {
+//   console.log(`Iteration ${i}: ${acc}`);
+//   return acc + cur;
+// }, 0);
+
+// const bln = movements.reduce((acc, cur) => acc + cur, 0);
+// console.log(bln);
+
+// const rrr = 2;
+
+// // const ttt = movements.map(function (mov) {
+// //   return mov * rrr;
+// // });
+// const ttt = movements.map((mov) => mov * rrr);
+// console.log(movements);
+// console.log(ttt);
+
+// const ttr = [];
+
+// for (const mov of movements) ttr.push(mov * rrr);
+// console.log(ttr);
